@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.mto.xml.oto" auto-import="false">
+
+    <class name="Adresse" table="ADRESSE">
+
+ 		<id name="adresseId" type="java.lang.Long" column="ADRESSE_ID" >
+			<generator class="native" />
+		</id>
+		
+        <property name="street" column="STREET"/>
+        <property name="city" column="CITY"/>
+        <property name="state" column="STATE"/>
+        <property name="country" column="COUNTRY"/>
+        
+      <!--  
+      one-to-one : Bidirectionelle et les deux coté gèrent la relation
+      Pour une Relation gérée uniquement par le coté Employe ==> supprimer cascade="all" lazy="false" ci-dessous et mettre fetch="select" 
+      -->
+         
+          <many-to-one name="employe" class="net.viralpatel.hibernate.mto.xml.oto.Employe" not-null="true" unique="true" fetch="select" >
+            <column name="employe_id" not-null="true" />
+         </many-to-one>
+                
+	</class>
+</hibernate-mapping>

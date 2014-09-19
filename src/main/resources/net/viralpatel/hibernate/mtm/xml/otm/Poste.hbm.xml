@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.mtm.xml.otm">
+
+	<class name="Poste" table="POSTE">
+
+		<id name="posteId" type="java.lang.Long" column="POSTE_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="remBase" type="java.lang.Float" column="REM_BASE" />
+		<property name="categorie" type="java.lang.Character" column="CATEGORIE" />		
+		<property name="description" type="java.lang.String" column="DESCRIPTION" />
+
+		<!--  
+		inverse="true" : La relation est gerée par le coté Employe
+		cascade="all" : la creation d'un Employe entraine celle de sa liste de POSTEs assiciés
+		-->
+		 <join table="EMPLOYE_POSTE" inverse="true" >
+            <key column="POSTE_ID"/>
+            <many-to-one name="employe" column="EMPLOYE_ID" not-null="true" cascade="all" />
+        </join>
+
+	</class>
+</hibernate-mapping>

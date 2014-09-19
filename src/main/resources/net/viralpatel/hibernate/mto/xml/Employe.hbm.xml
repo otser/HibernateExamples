@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.mto.xml" auto-import="false">
+
+	<class name="Employe" table="EMPLOYE">
+		<id name="employeId" column="EMPLOYE_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="firstname" />
+		<property name="lastname" column="lastname" />
+		<property name="birthDate" type="date" column="birth_date" />
+		<property name="cellphone" column="cell_phone" />
+  		
+        <!--  
+		inverse="true" : C'est l'objet Employe (père) qui est responsable de la relation
+		inverse="false" cascade="all" : C'est l'objet Adresse  (fils) qui est responsable de la relation
+		inverse="false" cascade="all-delete-orphan" : Pour supprimer les Employe (père) qui ne sont plus rattaché à un Adresse (fils)
+		-->
+		<!-- <set name="adresses" table="ADRESSE" inverse="false"  cascade="all" lazy="true" fetch="select">
+            <key>
+                <column name="employe_id" not-null="true" />
+            </key>
+            <one-to-many class="net.viralpatel.hibernate.mto.xml.Adresse" />
+        </set> -->
+        
+        
+        <set name="adresses" table="ADRESSE" inverse="true"  cascade="all" lazy="true" fetch="select">
+            <key>
+                <column name="employe_id" not-null="true" />
+            </key>
+            <one-to-many class="net.viralpatel.hibernate.mto.xml.Adresse" />
+        </set>
+
+	</class>
+</hibernate-mapping>

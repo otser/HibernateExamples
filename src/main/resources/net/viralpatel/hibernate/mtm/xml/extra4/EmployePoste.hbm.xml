@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 sept. 2014 10:41:35 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping package="net.viralpatel.hibernate.mtm.xml.extra4"  auto-import="false">
+
+
+    <class name="EmployePoste" table="employe_postexml" catalog="hibernate_examples">
+        
+        <id name="employePostexmlId" type="java.lang.Long">
+            <column name="employe_postexml_id" />
+            <generator class="identity" />
+        </id>
+        
+        <property name="remuneration" type="java.lang.Float">
+            <column name="remuneration" precision="12" scale="0" />
+        </property>
+        <property name="dateEmbauche" type="date">
+            <column name="date_embauche" length="10" />
+        </property>
+        <property name="dateDebut" type="date">
+            <column name="date_debut" length="10" />
+        </property>
+        <property name="dateFin" type="date">
+            <column name="date_fin" length="10" />
+        </property>
+        
+        <many-to-one name="employe" class="Employe" update="false" insert="false" fetch="select">
+            <column name="employe_id" not-null="true" />
+        </many-to-one>
+        
+        <many-to-one name="poste" class="Poste" update="false" insert="false" fetch="select">
+            <column name="postexml_id" not-null="true" />
+        </many-to-one>         
+        
+        <!-- 
+         <join table="employe_postexml" inverse="true" >
+            <key column="postexml_id"/>
+            <many-to-one name="employe" column="EMPLOYE_ID" not-null="true" cascade="all" />
+        </join>    
+        
+         <join table="employe_postexml" inverse="true" >
+            <key column="employe_id"/>
+            <many-to-one name="poste" column="POSTEXML_ID" not-null="true" cascade="all" />
+        </join>      -->
+        
+    </class>
+</hibernate-mapping>

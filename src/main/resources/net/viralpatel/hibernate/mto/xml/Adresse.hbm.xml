@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.mto.xml" auto-import="false">
+
+    <class name="Adresse" table="ADRESSE">
+
+ 		<id name="adresseId" type="java.lang.Long" column="ADRESSE_ID" >
+			<generator class="native" />
+		</id>
+		
+        <property name="street" column="STREET"/>
+        <property name="city" column="CITY"/>
+        <property name="state" column="STATE"/>
+        <property name="country" column="COUNTRY"/>
+        <!-- 
+        cascade="all" : A mettre si inverse="true" dans Employe.hbm.xml
+        cascade="all" : A supprimer si inverse="false" dans Employe.hbm.xml
+         -->
+        <many-to-one name="employe" class="net.viralpatel.hibernate.mto.xml.Employe" fetch="select">
+        <!-- 
+        Le not-null="true" permet de faire en sorte que l'attribut employe (père) soit considéré faisant partie de l'état de l'objet  Adresse pour qu'il soit
+        crée lors d'un INSERT et donc ne nécessitera plus l'éission d'un UPDATE après l'INSERT pour la création de l'objet  Adresse : Donc
+        -->
+            <column name="employe_id" not-null="true" />
+        </many-to-one>
+                
+	</class>
+</hibernate-mapping>
+
+
+
+										<!-- 	Pour que la relation OneToMAny/ManyToOne soit gérée des deux cotés utiliser les ammping suivant	-->
+
+	<!-- 	Employe.hbm.xml	-->
+ 	<!-- 
+ 		<set name="adresses" table="ADRESSE" inverse="true"  cascade="all" lazy="true" fetch="select">
+            <key>
+                <column name="employe_id" not-null="true" />
+            </key>
+            <one-to-many class="net.viralpatel.hibernate.mto.xml.Adresse" />
+        </set> 
+     -->
+     
+     
+	<!-- 	Adresse.hbm.xml	-->
+	<!--  
+		<many-to-one name="employe" class="net.viralpatel.hibernate.mto.xml.Employe" fetch="select" cascade="all">
+            <column name="employe_id" not-null="true" />
+        </many-to-one> -->

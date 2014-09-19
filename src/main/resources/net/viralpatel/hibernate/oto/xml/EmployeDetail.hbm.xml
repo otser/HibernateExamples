@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.oto.xml">
+
+    <class name="EmployeDetail" table="EMPLOYE_DETAIL">
+
+<!--  
+Pour s'assurer que les clés primaires qui relient les lignes de EmployeDetail et Employe sont égales Hibernate utilise une  startégie de generation nommée "foreign"
+La création d'une nouvelle instance de EmployeDetail aura la même clé primaire que l'instance Employe referencée par la propriété "employe" de cette instance 
+(cette proprièté "employe" est définie par l'element xml <one-to-one name="employe" ....)
+
+-->
+ 		<id name="employeId" type="java.lang.Long">
+			<column name="EMPLOYE_ID" />
+			<generator class="foreign">
+				<param name="property">employe</param>
+			</generator>
+		</id>
+		<!--  
+		 constrained="true" : Ajoute un contrainte de clé étranère sur EmployeDetail.employeId pour dire qu'elle reférence la clé primaire Employe.employeId
+		 This option affects the order in which save() and delete() are cascaded, and determines whether the association can be proxied. It is also used by the schema export tool.
+		 
+		 constrained="true"
+		-->
+		<one-to-one name="employe" class="net.viralpatel.hibernate.oto.xml.Employe"  constrained="true"></one-to-one>
+		
+        <property name="street" column="STREET"/>
+        <property name="city" column="CITY"/>
+        <property name="state" column="STATE"/>
+        <property name="country" column="COUNTRY"/>
+	</class>
+
+</hibernate-mapping>

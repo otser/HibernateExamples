@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate_examples</property>
+        <property name="connection.username">admin</property>
+        <property name="connection.password">admin</property>
+        
+        <property name="connection.pool_size">1</property>
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        <property name="show_sql">false</property>
+        <!--  
+        validate: validate the schema, makes no changes to the database.
+		update: update the schema.
+		create: creates the schema, destroying previous data.
+		create-drop: drop the schema at the end of the session.
+		-->
+        <property name="hbm2ddl.auto">validate</property>
+        <!-- #########################################		RELATION		#########################################  -->
+ 		<!-- OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO		MAPPING XML		OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  -->
+ 		<!--  Hibernate Many To Many XML  Mapping  --> 		
+ 		<mapping resource="net/viralpatel/hibernate/mtm/xml/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/Meeting.hbm.xml"/>
+        
+        <mapping resource="net/viralpatel/hibernate/otm/xml/list/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/otm/xml/list/Department.hbm.xml"/>
+        
+        <mapping resource="net/viralpatel/hibernate/otm/xml/set/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/otm/xml/set/Department.hbm.xml"/>
+        
+        
+        <!-- OneToMany implemented as  OneToOne -->
+        <!-- <mapping resource="net/viralpatel/hibernate/otm/xml/oto/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/otm/xml/oto/Department.hbm.xml"/> -->
+        
+        <!-- OneToOne -->
+        <mapping resource="net/viralpatel/hibernate/oto/xml/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/oto/xml/EmployeDetail.hbm.xml"/>
+        
+         <!-- ManyToOne -->
+        <mapping resource="net/viralpatel/hibernate/mto/xml/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mto/xml/Adresse.hbm.xml"/>
+        
+        
+         <!-- ManyToOne implemented as OneToOne -->
+        <mapping resource="net/viralpatel/hibernate/mto/xml/oto/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mto/xml/oto/Adresse.hbm.xml"/>
+        
+        
+        <!-- ManyToMany implemented as OneToMany -->
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/otm/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/otm/Poste.hbm.xml"/>
+        
+        
+         <!-- ManyToMany avec des colonnes supplémentaires -->
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra1/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra1/Poste.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra1/EmployePoste.hbm.xml"/>
+        
+         <!-- ManyToMany avec des colonnes supplémentaires -->
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra2/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra2/Poste.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra2/EmployePoste.hbm.xml"/>
+        
+         <!-- ManyToMany avec des colonnes supplémentaires -->
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra4/Employe.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra4/Poste.hbm.xml"/>
+        <mapping resource="net/viralpatel/hibernate/mtm/xml/extra4/EmployePoste.hbm.xml"/>
+         <!-- OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO		ANNOTATIONS		OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO  -->
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra1.Employe"/>
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra1.Poste"/>        
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra1.EmployePosteId"/>
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra1.EmployePoste"/>
+         
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra2.Employe"/>
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra2.Poste"/>        
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra2.EmployePosteId"/>
+         <mapping class="net.viralpatel.hibernate.mtm.anno.extra2.EmployePoste"/>
+         
+         
+          <mapping class="net.viralpatel.hibernate.mtm.anno.norma.Employe"/>
+         <mapping class="net.viralpatel.hibernate.mtm.anno.norma.Poste"/>        
+         
+         
+         <!-- #########################################		HERITAGE		#########################################  -->
+         
+        <mapping class="net.viralpatel.hibernate.tpsc.Person"/>
+ 		<mapping class="net.viralpatel.hibernate.tpsc.Employee"/>
+ 		<mapping class="net.viralpatel.hibernate.tpsc.Owner"/> 
+ 		
+ 		<!-- <mapping class="net.viralpatel.hibernate.tpch.Person"/>
+ 		<mapping class="net.viralpatel.hibernate.tpch.Employee"/> -->
+ 		
+ 		<!-- 
+ 		<mapping class="net.viralpatel.hibernate.tpcc.Person"/>
+ 		<mapping class="net.viralpatel.hibernate.tpcc.Employee"/>
+ 		<mapping class="net.viralpatel.hibernate.tpcc.Owner"/>
+ 		
+ 		  -->
+ 		<!--  Hibernate One To One Annotation Mapping  --> 		
+ 		<!-- 
+ 		<mapping class="net.viralpatel.hibernate.oto.anno.EmployeeDetail"/>
+ 		<mapping class="net.viralpatel.hibernate.oto.anno.Employee"/>
+ 		 -->
+ 		 
+    </session-factory>
+</hibernate-configuration>
