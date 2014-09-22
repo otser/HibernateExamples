@@ -5,7 +5,7 @@
   <artifactId>HibernateExamples</artifactId>
   <packaging>jar</packaging>
   <name>HibernateExamples</name>
-  <version>1.0</version>
+  <version>1.0-SNAPSHOT</version>
   
   
   <description></description>
@@ -166,11 +166,23 @@
         </plugins>
     </build>
     
-    <scm>
-    <url>http://localhost/Bonobo.Git.Server/Repository/HibernateExamples</url>
-    <connection>scm:git:git://localhost/Bonobo.Git.Server/HibernateExamples.git</connection>
-    <developerConnection>scm:git:git://localhost/Bonobo.Git.Server/HibernateExamples.git</developerConnection>	
+    	<scm>
+    <url>https://github.com/otser/HibernateExamples.git</url>
+    <connection>scm:git:https://github.com/otser/HibernateExamples.git</connection>
+    <developerConnection>scm:git:https://github.com/otser/HibernateExamples.git</developerConnection>	
  	 </scm>
+    
+  <!-- 	<scm>
+    <url>http://localhost/Bonobo.Git.Server/Repository/HibernateExamples</url>
+    <connection>scm:git:http://localhost/Bonobo.Git.Server/HibernateExamples.git</connection>
+    <developerConnection>scm:git:http://localhost/Bonobo.Git.Server/HibernateExamples.git</developerConnection>	
+ 	 </scm> -->
+ 	<!--  
+ 	<scm>
+    <url>http://localhost/Bonobo.Git.Server/Repository/HibernateExamples</url>
+    <connection>scm:git:file:////D:/Projects/GitProjects/General/HibernateExamples</connection>
+    <developerConnection>scm:git:file:////D:/Projects/GitProjects/General/HibernateExamples</developerConnection>	
+ 	</scm>  -->
 	
 	<!-- Dans ce tag distributionManagement, indiquer à Maven où déposer les artifacts générés par la release. -->   
 	<!-- Emplacement où seront générés les artefacts après la création d'une release -->
