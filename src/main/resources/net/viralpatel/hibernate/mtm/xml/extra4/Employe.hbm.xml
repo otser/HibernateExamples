@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 sept. 2014 10:41:35 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping package="net.viralpatel.hibernate.mtm.xml.extra4"  auto-import="false">
+    <class name="Employe" table="employe" catalog="hibernate_examples">
+        <id name="employeId" type="java.lang.Long">
+            <column name="employe_id" />
+            <generator class="identity" />
+        </id>
+        <!-- <many-to-one name="department" class="Department" fetch="select">
+            <column name="department_id" />
+        </many-to-one> -->
+        <property name="firstname" type="string">
+            <column name="firstname" length="50" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" length="50" />
+        </property>
+        <property name="birthDate" type="date">
+            <column name="birth_date" length="10" />
+        </property>
+        <property name="cellPhone" type="string">
+            <column name="cell_phone" length="15" />
+        </property>
+      <!--   <property name="idx" type="int">
+            <column name="idx" not-null="true" />
+        </property> -->
+        
+        
+         <!--  
+        cascade="all"
+        -->
+        <set name="employePostes" table="employe_postexml" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employe_id" not-null="true" />
+            </key>
+            <one-to-many class="EmployePoste" />
+        </set>
+        
+        <!-- 
+        <set name="adresses" table="adresse" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="employe_id" not-null="true" />
+            </key>
+            <one-to-many class="Adresse" />
+        </set>
+        <set name="meetings" table="employe_meeting" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="employe_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="Meeting">
+                <column name="meeting_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <one-to-one name="employeDetail" class="EmployeDetail"></one-to-one> -->
+    </class>
+</hibernate-mapping>

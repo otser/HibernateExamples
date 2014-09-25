@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.otm.xml.set" auto-import="false">
+
+    <class name="Department" table="DEPARTMENT">
+
+ 		<id name="departmentId" type="java.lang.Long" column="DEPARTMENT_ID" >
+			<generator class="native" />
+		</id>
+		
+        <property name="departmentName" column="DEPT_NAME"/>
+
+		<!--  
+		inverse="true" : C'est l'objet Employe (fils) qui est responsable de la relation
+		inverse="false" cascade="all" : C'est l'objet Departement  (père) qui est responsable de la relation
+		inverse="false" cascade="all-delete-orphan" : Pour supprimer les Employe (fils) qui ne sont plus rattaché à un Department (père)
+		-->
+		<set name="employes" table="employe" inverse="false" cascade="all" lazy="true" fetch="select">
+            <key>
+                <column name="department_id" not-null="true" />
+            </key>
+            <one-to-many class="net.viralpatel.hibernate.otm.xml.set.Employe" />
+        </set>
+                
+	</class>
+</hibernate-mapping>

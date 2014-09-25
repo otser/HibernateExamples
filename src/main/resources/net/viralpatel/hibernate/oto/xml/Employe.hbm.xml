@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.oto.xml">
+
+	<class name="Employe" table="EMPLOYE">
+		<id name="employeId" column="EMPLOYE_ID">
+			<generator class="native" />
+		</id>
+		<!--  
+		cascade="save-update"
+		-->
+		<one-to-one name="employeDetail" class="net.viralpatel.hibernate.oto.xml.EmployeDetail" cascade="all"></one-to-one>
+		
+		<property name="firstname" />
+		<property name="lastname" column="lastname" />
+		<property name="birthDate" type="date" column="birth_date" />
+		<property name="cellphone" column="cell_phone" />
+
+	</class>
+</hibernate-mapping>

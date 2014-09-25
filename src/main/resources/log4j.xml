@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" [<!ENTITY log4j:logDir "./Logs">]>
+
+<!-- [<!ENTITY log4j:logDir "D:/Projects/GitRepositories/General/HibernateExamples/Logs">] -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+		<!-- AFFICHAGE DE LOGS SUR LA SORTIE STANDARD EN LEVEL 'DEBUG' -->
+	<appender name="CONSOLE_APPENDER" class="org.apache.log4j.ConsoleAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="Target" value="System.out" />
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- The default pattern: Date Priority [Category] Message\n -->
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="debug" />
+		</filter>
+	</appender>
+
+ 			<!-- AFFICHAGE DE LOGS DANS UN FICHIER EN LEVEL 'DEBUG' -->
+ 	<!-- 		
+	<appender name="APP_APPENDER_DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="datePattern" value="dd-MM-yyyy" />
+		<param name="file" value="&log4j:logDir;/debug.log" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%n %d{dd/MM/yyyy HH:mm:ss} %-5p %x %M(%F:%L) - %m  %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="debug" />
+		</filter>
+	</appender>
+ -->
+ 				<!-- AFFICHAGE DE LOGS DANS UN FICHIER POUR LE SERVICE APPLICATIF SIENE EN LEVEL 'DEBUG' -->
+ 	<!-- 			
+	<appender name="WS_SIENE_APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="datePattern" value="dd-MM-yyyy" />
+		<param name="file" value="&log4j:logDir;/ws_siene_values.log" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd/MM/yyyy\tHH:mm:ss\t}	%m %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="debug" />
+		</filter>
+	</appender>
+	 -->
+			<!-- AFFICHAGE DE LOGS DANS UN FICHIER POUR LES TEMPS D'EXECUTION DES SERVICES APPLICATIFS EN LEVEL 'DEBUG' -->
+	<!-- 		
+	<appender name="STATS_APPENDER_DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="datePattern" value="dd-MM-yyyy" />
+		<param name="file" value="&log4j:logDir;/perfs_stats.log" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{dd/MM/yyyy\tHH:mm:ss\t}	%m %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="debug" />
+			<param name="LevelMax" value="debug" />
+		</filter>
+	</appender>
+	 -->
+	     <!-- AFFICHAGE DES LOGS DANS UN FICHIER EN LEVEL 'INFO' -->
+	<!--      
+	<appender name="APP_APPENDER_INFO" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="datePattern" value="dd-MM-yyyy" />
+		<param name="file" value="&log4j:logDir;/info.log" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%n %d{dd/MM/yyyy HH:mm:ss} %-5p %x %M(%F:%L) - %m  %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="info" />
+			<param name="LevelMax" value="info" />
+		</filter>
+	</appender>
+ -->
+	     <!-- AFFICHAGE DES LOGS DANS UN FICHIER EN LEVEL 'WARN' -->
+	<!--      
+	<appender name="APP_APPENDER_WARN" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="datePattern" value="dd-MM-yyyy" />
+		<param name="file" value="&log4j:logDir;/warn.log" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%n %d{dd/MM/yyyy HH:mm:ss} %-5p %x %M(%F:%L) - %m  %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="warn" />
+			<param name="LevelMax" value="warn" />
+		</filter>
+	</appender>
+ -->
+	     <!-- AFFICHAGE DES LOGS DANS UN FICHIER EN LEVEL 'ERROR' -->
+<!-- 	     
+	<appender name="APP_APPENDER_ERROR" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="datePattern" value="dd-MM-yyyy" />
+		<param name="file" value="&log4j:logDir;/error.log" />
+		<param name="append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%n %d{dd/MM/yyyy HH:mm:ss} %-5p %x %M(%F:%L) - %m  %n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="error" />
+			<param name="LevelMax" value="error" />
+		</filter>
+	</appender>
+ -->
+	     <!-- AFFICHAGE DES LOGS DANS UN FICHIER SQL -->	     
+	<appender name="SQL_APPENDER" class="org.apache.log4j.DailyRollingFileAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<param name="datePattern" value="dd-MM-yyyy" />
+		<param name="file" value="&log4j:logDir;/sql.log" />
+		<param name="append" value="true" />
+		
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%n %d{dd/MM/yyyy HH:mm:ss} %-5p %x %M(%F:%L) - %m  %n" />
+		</layout>
+	</appender>
+
+				<!--Spring logging -->
+				
+	<!-- <logger name="org.springframework.aop.framework.autoproxy">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.springframework.aop.framework.autoproxy.metadata">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.springframework.aop.framework.autoproxy.target">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.springframework.transaction.interceptor">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.springframework.orm">
+		<level value="ERROR" />
+	</logger>
+	 -->
+				<!--End of Spring logging -->
+
+				<!-- Hibernate logging -->
+				
+	<logger name="org.hibernate">
+		<level value="ERROR" />
+	</logger>
+	
+	<logger name="org.hibernate.SQL">
+		<level value="DEBUG" />
+		<appender-ref ref="SQL_APPENDER" />
+	</logger>
+	
+	<!-- Affichage des paramètres des requêtes SQL -->
+	<!--  <logger name="org.hibernate.type">  
+	 <level value="TRACE"/>  
+	 <appender-ref ref="SQL_APPENDER" />
+	 </logger>  -->
+	
+			<!-- End of Hibernate logging -->
+	
+			<!-- Log du pool de connexions C3P0 -->
+	<logger name="com.mchange.v2.c3p0">
+    	<level value="ERROR"/>
+	</logger>
+
+<!--  
+The root logger is configured to output log message at level "ERROR" or higher to the appender named "CONSOLE_APPENDER". All loggers inherit their settings from the root logger, 
+so with no other configuration settings, all loggers will output all of their messages to the "console" appender automatically.
+-->
+	<root>
+		<priority value="ERROR" />
+		<appender-ref ref="CONSOLE_APPENDER"/>
+	</root>
+</log4j:configuration>

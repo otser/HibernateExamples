@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.mtm.xml" auto-import="false">
+
+	<class name="Employe" table="EMPLOYE">
+		<id name="employeId" type="java.lang.Long" column="EMPLOYE_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="firstname" />
+		<property name="lastname" column="lastname" />
+		<property name="birthDate" column="birth_date" />
+		<property name="cellphone" column="cell_phone" />
+
+		<!-- inverse="false" (default)  means "Employe" is the relationship owner, and Employe will UPDATE the relationship.
+		inverse="false" (d'un seul coté): La relation est gérée par ce coté, i.e par la classe Employe 
+		inverse="false" de deux cotés : La relation est génrée par les deux cotés. avec cascade="all" des deux cotés, les operations effectuées sur un coté sont propagées sur l'autre
+		Cette configuration est extrement dangereuse car lorsque'on supprime par exemple un seul objet Employe alors ses Meetings aussi seront supprimés mais aussi les Employes
+		associé à ces Meetings et les Meetings associés à ces Employes ....et ainsi de suite
+		
+		Une vrai relation many-to-many (avec  relation est gérée par un seul coté) ne supporte pas le cascade="all" à cause des deletes (la suppression d'un objet Emplye impliquera
+		la suppression la relationdes et les objets Meeting assocés mais ceux-ci peuvent être referncés par d'autres objets Emplyés d'oû une exception)
+		
+		save-update
+		 -->
+		<set name="meetings" table="EMPLOYE_MEETING" inverse="false" lazy="true" fetch="select" cascade="all">
+			<key column="EMPLOYE_ID" />
+			<many-to-many column="MEETING_ID" class="Meeting" />
+		</set>
+
+	</class>
+</hibernate-mapping>

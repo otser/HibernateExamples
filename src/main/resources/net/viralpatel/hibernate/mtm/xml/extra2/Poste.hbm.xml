@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9 sept. 2014 10:41:35 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping package="net.viralpatel.hibernate.mtm.xml.extra2"  auto-import="false">
+    <class name="Poste" table="poste" catalog="hibernate_examples">
+        <id name="posteId" type="java.lang.Long">
+            <column name="poste_id" />
+            <generator class="identity" />
+        </id>
+        <property name="remBase" type="java.lang.Float">
+            <column name="rem_base" precision="12" scale="0" />
+        </property>
+        <property name="categorie" type="java.lang.Character">
+            <column name="categorie" length="1" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="50" />
+        </property>
+        
+        
+        <!--  
+        cascade="all"
+        -->
+        
+       <set name="employePostes" table="employe_poste" inverse="true" lazy="true" fetch="join" >
+            <key>
+                <column name="poste_id" not-null="true" />
+            </key>
+            <one-to-many class="EmployePoste" />
+        </set>
+        
+       
+    
+    </class>
+</hibernate-mapping>

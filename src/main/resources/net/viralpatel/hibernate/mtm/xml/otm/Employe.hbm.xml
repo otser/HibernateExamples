@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate.mtm.xml.otm" auto-import="false">
+
+	<class name="Employe" table="EMPLOYE">
+		<id name="employeId" type="java.lang.Long" column="EMPLOYE_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="firstname" />
+		<property name="lastname" column="lastname" />
+		<property name="birthDate" column="birth_date" />
+		<property name="cellphone" column="cell_phone" />
+
+		<!-- 
+		save-update
+		
+		The Employe class has a set of postes and the Poste class has a reference to its Employe. 
+		This is a typical configuration for a bidirectional one-to-many association. And note that we don’t have to write model class for the join table.
+		
+		The join table EMPLOYE_POSTE is specified in both sides, in the <set> element of the Employe.hbm.xml file and in the <join> element of the Poste.hbm.xml file.
+		Employe.hbm.xml: The attribute cascade=”all” tells Hibernate to update changes to the children (Poste) automatically when the parent (Employe) has changed.
+		Poste.hbm.xml: The attribute inverse=”true” tells Hibernate that the relationship owner is on the reverse side (the join table).Specifying this attribute is required for a one-to-many association.
+				 
+		-->
+		
+		<set name="postes" table="EMPLOYE_POSTE" inverse="false" cascade="all" lazy="true" fetch="select">
+            <key>
+                <column name="EMPLOYE_ID" not-null="true" />
+            </key>
+             <many-to-many column="POSTE_ID" class="net.viralpatel.hibernate.mtm.xml.otm.Poste" unique="true"/>
+        </set>
+
+	</class>
+</hibernate-mapping>
+
+
+		<!-- OneToMany Bidirectionnel -->
+		<!-- Employe.hbm.xml -->
+		<!-- 
+		<set name="postes" table="EMPLOYE_POSTE" inverse="false" cascade="all" lazy="true" fetch="select">
+            <key>
+                <column name="EMPLOYE_ID" not-null="true" />
+            </key>
+             <many-to-many column="POSTE_ID" class="net.viralpatel.hibernate.mtm.xml.otm.Poste" unique="true"/>
+        </set>
+         -->
+        
+        <!-- Poste.hbm.xml -->
+        <!-- 
+        <join table="EMPLOYE_POSTE" inverse="true" >
+            <key column="POSTE_ID"/>
+            <many-to-one name="employe" column="EMPLOYE_ID" not-null="true" cascade="all" />
+        </join>
+         -->
